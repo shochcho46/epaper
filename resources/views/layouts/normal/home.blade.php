@@ -10,47 +10,63 @@
 @section('content')
 <div class="container-fluid">
 
-    <div class=" mt-5 highslide-gallery">
-        <div class="grid">
-          <div class="grid-sizer"></div>
+    <div class="row">
+
+        <div class="col-xs-0 col-sm-0 col-md-8 col-lg-8 col-xl-8">
+
+            <div class=" mt-5 highslide-gallery">
+                <div class="grid">
+                  <div class="grid-sizer"></div>
 
 
 
-          <div class="grid-item">
+                  <div class="grid-item">
 
-            <a href="{{ url($headImage->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
-                        <img src="{{ url($headImage->pic_location) }}" alt="Highslide JS"
-                            title="Click to enlarge" />
-                </a>
-          </div>
+                    <a href="{{ url($headImage->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
+                                <img src="{{ url($headImage->pic_location) }}" alt="Highslide JS"
+                                    title="Click to enlarge" />
+                        </a>
+                  </div>
 
+
+
+
+                </div>
+                </div>
+
+            <div class="highslide-gallery">
+                <div class="grid">
+                  <div class="grid-sizer"></div>
+
+
+
+                  @foreach ($data as $picture)
+
+                  <div class="grid-item">
+
+                    <a href="{{ url($picture->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
+                                <img src="{{ url($picture->pic_location) }}" alt="Highslide JS"
+                                    title="Click to enlarge" />
+                        </a>
+                  </div>
+
+                  @endforeach
+
+
+                </div>
+                </div>
+
+        </div>
+
+        <div class="col-xs-0 col-sm-0 col-md-4 col-lg-4 col-xl-4">
 
 
 
         </div>
-        </div>
 
-    <div class=" mt-5 highslide-gallery">
-        <div class="grid">
-          <div class="grid-sizer"></div>
+    </div>
 
 
-
-          @foreach ($data as $picture)
-
-          <div class="grid-item">
-
-            <a href="{{ url($picture->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
-                        <img src="{{ url($picture->pic_location) }}" alt="Highslide JS"
-                            title="Click to enlarge" />
-                </a>
-          </div>
-
-          @endforeach
-
-
-        </div>
-        </div>
 
         <p class="float-right">
             {{ $data->links() }}
