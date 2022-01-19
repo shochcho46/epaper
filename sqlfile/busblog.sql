@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2022 at 10:54 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jan 19, 2022 at 01:46 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `epaper`
+-- Database: `busblog`
 --
 
 -- --------------------------------------------------------
@@ -59,8 +59,8 @@ CREATE TABLE `head_images` (
 --
 
 INSERT INTO `head_images` (`id`, `user_id`, `pic_name`, `pic_location`, `showdate`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '1642455647747.jpg', 'storage/headImage/1642455647747.jpg', '19 January, 2022', '1', '2022-01-17 21:40:47', '2022-01-17 21:40:47'),
-(2, 1, '1642456392472.jpg', 'storage/headImage/1642456392472.jpg', '2022-01-17', '1', '2022-01-17 21:53:12', '2022-01-17 21:53:12');
+(1, 1, '1642588265953.jpg', 'storage/headImage/1642588265953.jpg', '2022-01-22', '1', '2022-01-19 06:23:49', '2022-01-19 10:31:05'),
+(2, 1, '1642582092307.jpg', 'storage/headImage/1642582092307.jpg', '2022-01-21', '1', '2022-01-19 08:48:12', '2022-01-19 10:30:29');
 
 -- --------------------------------------------------------
 
@@ -94,13 +94,49 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(7, '2014_10_12_000000_create_users_table', 1),
-(8, '2014_10_12_100000_create_password_resets_table', 1),
-(9, '2019_08_19_000000_create_failed_jobs_table', 1),
-(10, '2021_06_05_210655_create_profiles_table', 1),
-(11, '2021_06_06_024051_create_mainmenus_table', 1),
-(12, '2021_06_06_024415_create_submenus_table', 1),
-(13, '2022_01_18_021931_create_head_images_table', 2);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2021_06_05_210655_create_profiles_table', 1),
+(5, '2021_06_06_024051_create_mainmenus_table', 1),
+(6, '2021_06_06_024415_create_submenus_table', 1),
+(7, '2022_01_18_021931_create_head_images_table', 1),
+(8, '2022_01_19_165231_create_newzpics_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newzpics`
+--
+
+CREATE TABLE `newzpics` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `pic_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pic_location` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `showdate` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `serial` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `newzpics`
+--
+
+INSERT INTO `newzpics` (`id`, `user_id`, `pic_name`, `pic_location`, `showdate`, `serial`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '1642590794805.jpg', 'storage/newzpic/1642590794805.jpg', '2022-01-19', '2', '1', '2022-01-19 11:13:14', '2022-01-19 11:40:15'),
+(3, 1, '1642592239417.png', 'storage/newzpic/1642592239417.png', '2022-01-19', '1', '1', '2022-01-19 11:14:58', '2022-01-19 11:40:05'),
+(4, 1, '1642592609339.jpg', 'storage/newzpic/1642592609339.jpg', '2022-01-19', '3', '1', '2022-01-19 11:43:29', '2022-01-19 11:43:29'),
+(5, 1, '1642592700182.jpg', 'storage/newzpic/1642592700182.jpg', '2022-01-19', '4', '1', '2022-01-19 11:45:00', '2022-01-19 11:45:00'),
+(6, 1, '1642592714613.jpg', 'storage/newzpic/1642592714613.jpg', '2022-01-19', '5', '1', '2022-01-19 11:45:14', '2022-01-19 11:45:14'),
+(7, 1, '1642592731789.jpg', 'storage/newzpic/1642592731789.jpg', '2022-01-19', '6', '1', '2022-01-19 11:45:31', '2022-01-19 11:45:31'),
+(8, 1, '1642592750997.png', 'storage/newzpic/1642592750997.png', '2022-01-19', '7', '1', '2022-01-19 11:45:50', '2022-01-19 11:45:50'),
+(9, 1, '1642592766272.png', 'storage/newzpic/1642592766272.png', '2022-01-19', '8', '1', '2022-01-19 11:46:06', '2022-01-19 11:46:06'),
+(10, 1, '1642592779992.jpg', 'storage/newzpic/1642592779992.jpg', '2022-01-19', '9', '1', '2022-01-19 11:46:19', '2022-01-19 11:46:19'),
+(11, 1, '1642592792443.jpg', 'storage/newzpic/1642592792443.jpg', '2022-01-19', '10', '1', '2022-01-19 11:46:32', '2022-01-19 11:46:32'),
+(12, 1, '1642594105880.jpg', 'storage/newzpic/1642594105880.jpg', '2022-01-19', '11', '1', '2022-01-19 12:08:25', '2022-01-19 12:08:25');
 
 -- --------------------------------------------------------
 
@@ -173,7 +209,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `mobile`, `password`, `location`, `resetcode`, `type`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'MD. SADMAN SHAKIB', 'shakib46@gmail.com', NULL, '01740303508', '$2y$10$1KzuDW1E36Hywu1tZyDMWebeV8/wKv3vCVRLc9HuWTtFO46I7gxjK', NULL, NULL, 'superadmin', 'active', NULL, '2022-01-17 20:09:20', '2022-01-17 20:09:20');
+(1, 'Joker', 'shakib46@gmail.com', NULL, '01740303508', '$2y$10$nOzfynSuFEc9m/upLsefTe0AasPpHWAVNDJl2GAcZ/CLqu91ImFG2', NULL, NULL, 'superadmin', 'active', NULL, '2022-01-19 05:26:21', '2022-01-19 05:26:21');
 
 --
 -- Indexes for dumped tables
@@ -204,6 +240,13 @@ ALTER TABLE `mainmenus`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `newzpics`
+--
+ALTER TABLE `newzpics`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `newzpics_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -247,7 +290,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `head_images`
 --
 ALTER TABLE `head_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `mainmenus`
@@ -259,7 +302,13 @@ ALTER TABLE `mainmenus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `newzpics`
+--
+ALTER TABLE `newzpics`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -288,6 +337,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `head_images`
   ADD CONSTRAINT `head_images_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `newzpics`
+--
+ALTER TABLE `newzpics`
+  ADD CONSTRAINT `newzpics_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `profiles`

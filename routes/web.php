@@ -8,6 +8,7 @@ use App\Http\Controllers\MainmenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegUserController;
 use App\Http\Controllers\SubmenuController;
+use App\Http\Controllers\NewzpicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -114,4 +115,22 @@ Route::put('/admin/headimage/{headimage}', [HeadImageController::class, 'update'
 Route::post('/admin/headimage/store', [HeadImageController::class, 'store'])->name('headimage.store');
 Route::delete('/admin/headimage/{headimage}', [HeadImageController::class, 'destroy'])->name('headimage.destroy');
 
+// Active Disable
+Route::get('/admin/status/headimage/{headimage}/{status}', [HeadImageController::class, 'status'])->name('headimage.status');
+
 // Head Image End
+
+
+// Newzpic Start
+
+Route::get('/admin/newzpic/create', [NewzpicController::class, 'create'])->name('newzpic.create');
+Route::get('/admin/newzpic/list', [NewzpicController::class, 'index'])->name('newzpic.index');
+Route::get('/admin/newzpic/{newzpic}/edit', [NewzpicController::class, 'edit'])->name('newzpic.edit');
+Route::put('/admin/newzpic/{newzpic}', [NewzpicController::class, 'update'])->name('newzpic.update');
+Route::post('/admin/newzpic/store', [NewzpicController::class, 'store'])->name('newzpic.store');
+Route::delete('/admin/newzpic/{newzpic}', [NewzpicController::class, 'destroy'])->name('newzpic.destroy');
+
+// Active Disable
+Route::get('/admin/status/newzpic/{newzpic}/{status}', [NewzpicController::class, 'status'])->name('newzpic.status');
+
+// Newzpic End
