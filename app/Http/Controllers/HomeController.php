@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Models\Newzpic;
+use App\Models\HeadImage;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -22,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.normal.home');
+        $currentdate = date("Y-m-d");
+        $data = Newzpic::whereDate('showdate','=', $currentdate)->paginate(10);
+        $headImage = HeadImage::first();
+        return view('layouts.normal.home',compact('data','headImage'));
+
     }
 
     public function signup()

@@ -22,7 +22,9 @@ class HeadImageController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin.image.create');
+        $data = HeadImage::orderBy('id', 'desc')->paginate(30);
+
+        return view('layouts.admin.image.list',compact('data'));
     }
 
     /**
@@ -52,9 +54,8 @@ class HeadImageController extends Controller
         $fullpathurl = 'storage/' . $path;
         $data['pic_name'] = $filename;
         $data['pic_location'] = $fullpathurl;
-
         HeadImage::create($data);
-        return back()->with('success', 'Data Saved');
+        return redirect()->route('headimage.index')->with('success', 'Data Saved');
     }
 
     /**
@@ -63,7 +64,7 @@ class HeadImageController extends Controller
      * @param  \App\Models\HeadImage  $headImage
      * @return \Illuminate\Http\Response
      */
-    public function show(HeadImage $headImage)
+    public function show(HeadImage $headimage)
     {
         //
     }
@@ -74,9 +75,12 @@ class HeadImageController extends Controller
      * @param  \App\Models\HeadImage  $headImage
      * @return \Illuminate\Http\Response
      */
-    public function edit(HeadImage $headImage)
+    public function edit(HeadImage $headimage)
     {
         //
+        $data = $headimage;
+
+        return view('layouts.admin.image.edit', compact('data'));
     }
 
     /**
@@ -86,9 +90,35 @@ class HeadImageController extends Controller
      * @param  \App\Models\HeadImage  $headImage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HeadImage $headImage)
+    public function update(Request $request, HeadImage $headimage)
     {
         //
+        $data = $this->validateRequest();
+
+        if (request()->hasFile('pic_location')) {
+
+            $images = $request->file('pic_location');
+            $extension = $images->extension();
+            $filename = time() . rand(10, 1000) . '.' . $extension;
+            $path = $images->storeAs('headImage', $filename, 'public');
+            $fullpathurl = 'storage/' . $path;
+            $data['pic_name'] = $filename;
+            $data['pic_location'] = $fullpathurl;
+
+
+        }
+
+        else
+        {
+            $data['pic_name'] = $request->pic_name;
+            $data['pic_location'] = $request->headimagepic;
+
+        }
+
+        $headimage->update($data);
+
+        return redirect()->route('headimage.index')->with('success', 'Data Updated');
+
     }
 
     /**
@@ -97,9 +127,22 @@ class HeadImageController extends Controller
      * @param  \App\Models\HeadImage  $headImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HeadImage $headImage)
+    public function destroy(HeadImage $headimage)
     {
         //
+
+        unlink('storage/headImage/' . $headimage->pic_name . '');
+         $headimage->delete();
+        return back()->with('fail', 'Data delete success full');
+    }
+
+    public function status(HeadImage $headimage ,$status)
+    {
+        $data = [
+                'status' => $status,
+          ];
+          $headimage->update($data);
+          return back()->with('success', 'Data Update');
     }
 
     public function validateRequest()

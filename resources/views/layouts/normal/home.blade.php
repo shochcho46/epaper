@@ -2,17 +2,72 @@
 
 @section('css')
 
+<link href="{{ asset('epaper/css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('epaper/js/highslide/highslide.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('content')
-<h1>normal User</h1>
+<div class="container-fluid">
+
+    <div class=" mt-5 highslide-gallery">
+        <div class="grid">
+          <div class="grid-sizer"></div>
+
+
+
+          <div class="grid-item">
+
+            <a href="{{ url($headImage->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
+                        <img src="{{ url($headImage->pic_location) }}" alt="Highslide JS"
+                            title="Click to enlarge" />
+                </a>
+          </div>
+
+
+
+
+        </div>
+        </div>
+
+    <div class=" mt-5 highslide-gallery">
+        <div class="grid">
+          <div class="grid-sizer"></div>
+
+
+
+          @foreach ($data as $picture)
+
+          <div class="grid-item">
+
+            <a href="{{ url($picture->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
+                        <img src="{{ url($picture->pic_location) }}" alt="Highslide JS"
+                            title="Click to enlarge" />
+                </a>
+          </div>
+
+          @endforeach
+
+
+        </div>
+        </div>
+
+        <p class="float-right">
+            {{ $data->links() }}
+        </p>
+        <input type="hidden" id="url" value="{{ url('epaper/js/highslide/graphics/') }}">
+</div>
 
 @endsection
 
 
 @section('script')
 
+<script src="{{ asset('epaper/js/highslide/highslide-with-gallery.min.js') }}" ></script>
+<script src="{{ asset('epaper/js/masonry.js') }}" ></script>
+
 <script type="text/javascript">
+
 
 $(document).ready(function() {
 
@@ -21,6 +76,56 @@ $(document).ready(function() {
 });
 
 
+</script>
+
+<script type="text/javascript">
+
+    var url = $('#url').val();
+    hs.graphicsDir = url+'/';
+
+    // hs.graphicsDir = 'http://127.0.0.1:8000/epaper/js/highslide/graphics/';
+
+    hs.align = 'center';
+    hs.transitions = ['expand', 'crossfade'];
+    hs.outlineType = 'rounded-white';
+    hs.wrapperClassName = 'controls-in-heading';
+    hs.fadeInOut = true;
+    //hs.dimmingOpacity = 0.75;
+
+    // Add the controlbar
+    if (hs.addSlideshow) hs.addSlideshow({
+        //slideshowGroup: 'group1',
+        interval: 5000,
+        repeat: false,
+        useControls: true,
+        fixedControls: false,
+        overlayOptions: {
+            opacity: 1,
+            position: 'top right',
+            hideOnMouseOut: false
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+
+
+// external js: masonry.pkgd.js, imagesloaded.pkgd.js
+
+// init Masonry
+var $grid = $('.grid').masonry({
+itemSelector: '.grid-item',
+percentPosition: true,
+columnWidth: '.grid-sizer'
+});
+// layout Masonry after each image loads
+$grid.imagesLoaded().progress( function() {
+$grid.masonry();
+});
+
+
+});
 </script>
 
 

@@ -7,12 +7,12 @@
     <div class="row mb-3">
 
 
-    
+
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
               <form method="POST" action="{{ route('headimage.store') }}"  enctype="multipart/form-data">
 
-            
+
                         <div class="card">
 
                             <h5 class="card-header primary-color white-text text-center py-4">
@@ -31,40 +31,40 @@
                                     @if($errors->has('pic_location'))
                                     <div class="error text-danger m-2">{{ $errors->first('pic_location') }}</div>
                                     @endif
-                                    
+
                                     <div class="md-form">
 
-                                    
+
                                         <input placeholder="Selected date" type="text" id="date-picker-example"  name="showdate" class="form-control  datepicker" required>
-        
+
                                         <label for="date-picker-example">Show date</label>
                                     </div>
-        
-        
+
+
                                     @if($errors->has('showdate'))
                                     <div class="error text-danger m-2">{{ $errors->first('showdate') }}</div>
                                     @endif
 
 
-                                    
+
                                     <input type="hidden"  name="user_id"  value="{{ Auth::id() }}" required  class="form-control">
 
-                                  
+
                                     <button class="btn btn-outline-primary btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">SUBMIT</button>
 
                                 </form>
-                               
+
 
                             </div>
 
                         </div>
-                       
+
 
 
         </div>
 
 
-   
+
 
 
 </div>
@@ -83,7 +83,18 @@
 
 <script type="text/javascript">
 
-   
+$(document).ready(function() {
+        $('.mdb-select').materialSelect();
+
+        $('.datepicker').pickadate({
+          selectYears:1000,
+          clear: 'effacer',
+          format: 'yyyy-mm-dd',
+          formatSubmit: 'yyyy-mm-dd',
+          editable: true
+          });
+
+      });
 
     $(function(){
 

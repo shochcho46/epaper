@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(HeadImage::class);
     }
+
+    public function newzpics()
+    {
+        return $this->hasMany(Newzpic::class);
+    }
 }
