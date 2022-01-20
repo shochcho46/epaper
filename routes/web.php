@@ -9,6 +9,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegUserController;
 use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\NewzpicController;
+use App\Http\Controllers\AdvertiseController;
+use App\Http\Controllers\SeoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +45,9 @@ Route::get('/', [HomeController::class, 'index'])->name('normal.home');
 Route::get('/signup', [HomeController::class, 'signup'])->name('normal.signup');
 Route::get('/login', [HomeController::class, 'login'])->name('normal.login');
 Route::post('/register', [HomeController::class, 'register'])->name('normal.register');
+
+Route::post('/search', [HomeController::class, 'search'])->name('search.home');
+Route::get('/get/{search}', [HomeController::class, 'getsearch'])->name('getsearch.home');
 
 // Normal User End
 
@@ -134,3 +139,28 @@ Route::delete('/admin/newzpic/{newzpic}', [NewzpicController::class, 'destroy'])
 Route::get('/admin/status/newzpic/{newzpic}/{status}', [NewzpicController::class, 'status'])->name('newzpic.status');
 
 // Newzpic End
+
+
+// Advertisement Start
+
+Route::get('/admin/advertise/create', [AdvertiseController::class, 'create'])->name('advertise.create');
+Route::get('/admin/advertise/list', [AdvertiseController::class, 'index'])->name('advertise.index');
+Route::get('/admin/advertise/{advertise}/edit', [AdvertiseController::class, 'edit'])->name('advertise.edit');
+Route::put('/admin/advertise/{advertise}', [AdvertiseController::class, 'update'])->name('advertise.update');
+Route::post('/admin/advertise/store', [AdvertiseController::class, 'store'])->name('advertise.store');
+Route::delete('/admin/advertise/{advertise}', [AdvertiseController::class, 'destroy'])->name('advertise.destroy');
+
+// Advertisement End
+
+
+
+// Seo Start
+
+Route::get('/admin/seo/create', [SeoController::class, 'create'])->name('seo.create');
+Route::get('/admin/seo/list', [SeoController::class, 'index'])->name('seo.index');
+Route::get('/admin/seo/{seo}/edit', [SeoController::class, 'edit'])->name('seo.edit');
+Route::put('/admin/seo/{seo}', [SeoController::class, 'update'])->name('seo.update');
+Route::post('/admin/seo/store', [SeoController::class, 'store'])->name('seo.store');
+Route::delete('/admin/seo/{seo}', [SeoController::class, 'destroy'])->name('seo.destroy');
+
+// Seo End

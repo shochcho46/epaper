@@ -81,7 +81,7 @@
 <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}"></script>
 <script src="{{ asset('js/taginput/tagsinput.js') }}"></script>
 <script src="{{ asset('js/spartan-multi-image-picker-min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.js') }}"></script>
+{{-- <script src="{{ asset('js/bootstrap.js') }}"></script> --}}
 <script src="{{ asset('datatables/datatables.js') }}"></script>
 <script src="{{ asset('datatables/Buttons-2.0.1/js/buttons.bootstrap4.min.js') }}"></script>
 

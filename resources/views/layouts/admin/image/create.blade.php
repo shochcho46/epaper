@@ -81,6 +81,8 @@
 
 @section('subscript')
 
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function() {
