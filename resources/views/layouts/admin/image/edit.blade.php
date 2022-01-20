@@ -86,6 +86,8 @@
 
 @section('subscript')
 
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+
 <script type="text/javascript">
 
     var imgaepath =  $("#oldimgpath").val();

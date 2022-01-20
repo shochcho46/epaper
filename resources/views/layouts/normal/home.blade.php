@@ -9,6 +9,12 @@
 
 @section('content')
 <div class="container-fluid">
+    <div class="text-center">
+
+        <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" method="POST" id="projectform" action="{{ route('search.home') }}" enctype="multipart/form-data">
+            @include('layouts.common.component.search')
+        </form>
+        </div>
 
     <div class="row">
 
@@ -18,15 +24,23 @@
                 <div class="grid">
                   <div class="grid-sizer"></div>
 
+                    @if ($headImage)
+
+                    <div class="grid-item">
+
+                        <a href="{{ url($headImage->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
+                                    <img src="{{ url($headImage->pic_location) }}" alt="Highslide JS"
+                                        title="Click to enlarge" />
+                            </a>
+                      </div>
+
+                    @else
+
+                    <p class="text-center">No data Found For this date</p>
+
+                    @endif
 
 
-                  <div class="grid-item">
-
-                    <a href="{{ url($headImage->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
-                                <img src="{{ url($headImage->pic_location) }}" alt="Highslide JS"
-                                    title="Click to enlarge" />
-                        </a>
-                  </div>
 
 
 
@@ -68,9 +82,9 @@
 
 
 
-        <p class="float-right">
+        <div class=" mt-5 float-left">
             {{ $data->links() }}
-        </p>
+        </div>
         <input type="hidden" id="url" value="{{ url('epaper/js/highslide/graphics/') }}">
 </div>
 

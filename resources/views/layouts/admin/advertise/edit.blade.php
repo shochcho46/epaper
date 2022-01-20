@@ -9,7 +9,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
-              <form method="POST" action="{{ route('newzpic.update',$data->id) }}"  enctype="multipart/form-data">
+              <form method="POST" action="{{ route('advertise.update',$data->id) }}"  enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -32,34 +32,38 @@
                                     <div class="error text-danger m-2">{{ $errors->first('pic_location') }}</div>
                                     @endif
 
-                                    <div class="md-form">
+
+                                    <select class="mdb-select md-form" name="addtype">
+                                        <option value="" disabled selected>Choose your option</option>
+
+                                        @if ($data->addtype == "hbanner" )
+                                        <option value="hbanner" selected>Head Banner</option>
+                                        <option value="fbanner">Footer Banner</option>
+                                        <option value="normal" >Normal Addvertise</option>
+                                        @elseif($data->addtype == "fbanner" )
+                                        <option value="hbanner" >Head Banner</option>
+                                        <option value="fbanner" selected>Footer Banner</option>
+                                        <option value="normal" >Normal Addvertise</option>
+                                        @else
+                                        <option value="hbanner" >Head Banner</option>
+                                        <option value="fbanner">Footer Banner</option>
+                                        <option value="normal" selected>Normal Addvertise</option>
+                                        @endif
+
+                                      </select>
 
 
-                                        <input placeholder="Selected date" type="text" id="date-picker-example" value="{{ old('showdate') ?? $data->showdate }}"  name="showdate" class="form-control  datepicker" required>
-
-                                        <label for="date-picker-example">Show date</label>
-                                    </div>
-
-
-                                    @if($errors->has('showdate'))
-                                    <div class="error text-danger m-2">{{ $errors->first('showdate') }}</div>
-                                    @endif
-
-                                    <div class="md-form">
-                                        <input type="number" id="serial" name="serial" placeholder="Serial" value="{{ old('serial') ?? $data->serial}}" required min="1" class="form-control">
-                                        <label for="serial">Serial</label>
-                                    </div>
-                                    @if($errors->has('serial'))
-                                    <div class="error text-danger m-2">{{ $errors->first('serial') }}</div>
-                                    @endif
+                                      @if($errors->has('addtype'))
+                                      <div class="error text-danger m-2">{{ $errors->first('addtype') }}</div>
+                                      @endif
 
 
 
                                     <input type="hidden"  name="user_id"  value="{{ Auth::id() }}">
-                                    <input type="hidden"  name="status"  value="{{ $data->status }}">
+
 
                                     <input type="hidden"  name="pic_name" id="pic_name"  value="{{ $data->pic_name }}">
-                                    <input type="hidden"  name="newzpic" id="newzpic"  value="{{ $data->pic_location }}">
+                                    <input type="hidden"  name="addpic" id="addpic"  value="{{ $data->pic_location }}">
                                     <input type="hidden"  name="oldimgpath" id="oldimgpath"  value="{{ url($data->pic_location) }}">
 
 
@@ -93,8 +97,6 @@
 
 
 @section('subscript')
-
-<script src="{{ asset('js/bootstrap.js') }}"></script>
 
 <script type="text/javascript">
 

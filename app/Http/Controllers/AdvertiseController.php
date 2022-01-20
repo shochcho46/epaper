@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HeadImage;
+use App\Models\Advertise;
 use Illuminate\Http\Request;
 
-class HeadImageController extends Controller
+class AdvertiseController extends Controller
 {
 
     public function __construct()
@@ -21,9 +21,9 @@ class HeadImageController extends Controller
      */
     public function index()
     {
-        $data = HeadImage::orderBy('id', 'desc')->paginate(30);
+        $data = Advertise::orderBy('id', 'desc')->paginate(10);
 
-        return view('layouts.admin.image.list',compact('data'));
+        return view('layouts.admin.advertise.list',compact('data'));
     }
 
     /**
@@ -33,7 +33,8 @@ class HeadImageController extends Controller
      */
     public function create()
     {
-        return view('layouts.admin.image.create');
+        //
+        return view('layouts.admin.advertise.create');
     }
 
     /**
@@ -44,26 +45,25 @@ class HeadImageController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $this->validateRequest();
         $images = $request->file('pic_location');
         $extension = $images->extension();
         $filename = time() . rand(10, 1000) . '.' . $extension;
-        $path = $images->storeAs('headImage', $filename, 'public');
+        $path = $images->storeAs('advertise', $filename, 'public');
         $fullpathurl = 'storage/' . $path;
         $data['pic_name'] = $filename;
         $data['pic_location'] = $fullpathurl;
-        HeadImage::create($data);
-        return redirect()->route('headimage.index')->with('success', 'Data Saved');
+        Advertise::create($data);
+        return redirect()->route('advertise.index')->with('success', 'Data Saved');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\HeadImage  $headImage
+     * @param  \App\Models\Advertise  $advertise
      * @return \Illuminate\Http\Response
      */
-    public function show(HeadImage $headimage)
+    public function show(Advertise $advertise)
     {
         //
     }
@@ -71,27 +71,24 @@ class HeadImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\HeadImage  $headImage
+     * @param  \App\Models\Advertise  $advertise
      * @return \Illuminate\Http\Response
      */
-    public function edit(HeadImage $headimage)
+    public function edit(Advertise $advertise)
     {
-        //
-        $data = $headimage;
-
-        return view('layouts.admin.image.edit', compact('data'));
+        $data = $advertise;
+        return view('layouts.admin.advertise.edit', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HeadImage  $headImage
+     * @param  \App\Models\Advertise  $advertise
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HeadImage $headimage)
+    public function update(Request $request, Advertise $advertise)
     {
-        //
         $data = $this->validateRequest();
 
         if (request()->hasFile('pic_location')) {
@@ -99,7 +96,7 @@ class HeadImageController extends Controller
             $images = $request->file('pic_location');
             $extension = $images->extension();
             $filename = time() . rand(10, 1000) . '.' . $extension;
-            $path = $images->storeAs('headImage', $filename, 'public');
+            $path = $images->storeAs('advertise', $filename, 'public');
             $fullpathurl = 'storage/' . $path;
             $data['pic_name'] = $filename;
             $data['pic_location'] = $fullpathurl;
@@ -110,38 +107,26 @@ class HeadImageController extends Controller
         else
         {
             $data['pic_name'] = $request->pic_name;
-            $data['pic_location'] = $request->headimagepic;
+            $data['pic_location'] = $request->addpic;
 
         }
 
-        $headimage->update($data);
+        $advertise->update($data);
 
-        return redirect()->route('headimage.index')->with('success', 'Data Updated');
-
+        return redirect()->route('advertise.index')->with('success', 'Data Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\HeadImage  $headImage
+     * @param  \App\Models\Advertise  $advertise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HeadImage $headimage)
+    public function destroy(Advertise $advertise)
     {
-        //
-
-        unlink('storage/headImage/' . $headimage->pic_name . '');
-         $headimage->delete();
-        return back()->with('fail', 'Data delete success full');
-    }
-
-    public function status(HeadImage $headimage ,$status)
-    {
-        $data = [
-                'status' => $status,
-          ];
-          $headimage->update($data);
-          return back()->with('success', 'Data Update');
+        unlink('storage/advertise/' . $advertise->pic_name . '');
+        $advertise->delete();
+       return back()->with('fail', 'Data delete success full');
     }
 
     public function validateRequest()
@@ -150,15 +135,14 @@ class HeadImageController extends Controller
         if (request()->hasFile('pic_location')) {
 
             $data = request()->validate([
-                'pic_location' => 'max:6000|dimensions:max_width=1920,max_height=450',
-                'user_id' => 'required',
-                'showdate' => 'required',
+                'pic_location' => 'max:60000|dimensions:max_width=1920,max_height=1080',
+                'addtype' => 'required',
+
             ]);
         } else {
             $data = request()->validate([
                 'pic_location' => '',
-                'user_id' => 'required',
-                'showdate' => 'required',
+                'addtype' => 'required',
             ]);
         }
 

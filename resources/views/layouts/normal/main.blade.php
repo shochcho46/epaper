@@ -38,21 +38,21 @@
         <header>
 
 
-          
+
 
             @include('layouts.normal.header')
 
 
           </header>
-         
-         
+
+
             <div class="container-fluid" style="padding-top: 5.5rem">
                 @yield('content')
             </div>
-         
+
 
           <div class="mt-5">
-            @include('layouts.normal.footer')
+            {{-- @include('layouts.normal.footer') --}}
 
           </div>
 
@@ -73,5 +73,23 @@
 
 
 @yield('script')
+@yield('subscript')
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+            // $('.mdb-select').materialSelect();
+
+            $('.datepicker').pickadate({
+              selectYears:1000,
+              clear: 'effacer',
+              format: 'yyyy-mm-dd',
+              formatSubmit: 'yyyy-mm-dd',
+              editable: true
+              });
+
+          });
+
+    </script>
 
 </html>

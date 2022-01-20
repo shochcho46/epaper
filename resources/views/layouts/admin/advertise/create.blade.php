@@ -10,13 +10,13 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
-              <form method="POST" action="{{ route('newzpic.store') }}"  enctype="multipart/form-data">
+              <form method="POST" action="{{ route('advertise.store') }}"  enctype="multipart/form-data">
 
 
                         <div class="card">
 
                             <h5 class="card-header primary-color white-text text-center py-4">
-                                <strong>Bus365 Images</strong>
+                                <strong>Bus365 Advertisement</strong>
                             </h5>
 
 
@@ -32,26 +32,24 @@
                                     <div class="error text-danger m-2">{{ $errors->first('pic_location') }}</div>
                                     @endif
 
-                                    <div class="md-form">
 
-
-                                        <input placeholder="Selected date" type="text" id="date-picker-example"  name="showdate" class="form-control  datepicker" required>
-
-                                        <label for="date-picker-example">Show date</label>
-                                    </div>
 
 
                                     @if($errors->has('showdate'))
-                                    <div class="error text-danger m-2">{{ $errors->first('showdate') }}</div>
+                                        <div class="error text-danger m-2">{{ $errors->first('showdate') }}</div>
                                     @endif
 
-                                    <div class="md-form">
-                                        <input type="number" id="serial" name="serial" placeholder="Serial" value="{{ old('serial') }}" required min="1" class="form-control">
-                                        <label for="serial">Serial</label>
-                                    </div>
-                                    @if($errors->has('serial'))
-                                    <div class="error text-danger m-2">{{ $errors->first('serial') }}</div>
-                                    @endif
+                                    <select class="mdb-select md-form" name="addtype">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="hbanner">Head Banner</option>
+                                        <option value="normal">Normal Addvertise</option>
+                                        <option value="fbanner">Footer Banner</option>
+                                      </select>
+
+
+                                      @if($errors->has('addtype'))
+                                      <div class="error text-danger m-2">{{ $errors->first('addtype') }}</div>
+                                      @endif
 
 
 
@@ -88,8 +86,7 @@
 
 
 @section('subscript')
-
-<script src="{{ asset('js/bootstrap.js') }}"></script>
+{{-- <script src="{{ asset('js/bootstrap.js') }}"></script> --}}
 
 <script type="text/javascript">
 
@@ -111,7 +108,7 @@ $(document).ready(function() {
         $("#titleimge").spartanMultiImagePicker({
             fieldName:        'pic_location',
             maxCount:         1,
-            rowHeight:        '500px',
+            rowHeight:        '300px',
             groupClassName:   'col-md-12 col-sm-12 col-xs-12',
             maxFileSize:      '60000000',
 

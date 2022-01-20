@@ -77,6 +77,22 @@ class HomeController extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        $data = $request->input('searchdate');
+        return redirect()->route('getsearch.home', $data);
+
+    }
+
+    public function getsearch($search)
+    {
+
+        $currentdate = $search;
+        $data = Newzpic::whereDate('showdate','=', $currentdate)->paginate(10);
+        $headImage = HeadImage::whereDate('showdate','=', $currentdate)->first();
+        return view('layouts.normal.home',compact('data','headImage'));
+    }
+
     public function loginValidate()
     {
 
@@ -91,4 +107,10 @@ class HomeController extends Controller
         return $data;
 
     }
+
+
+
+
+
+
 }
