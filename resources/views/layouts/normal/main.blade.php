@@ -3,8 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{{ $seo->description }}">
 
-        <title></title>
+        <title>{{ $seo->title }}</title>
+        <link rel="icon" type="image/png" href="{{ url($websetting->fav_location) }}"/>
+        <link rel="canonical"  href="{{ url('/') }}"/>
 
 
 

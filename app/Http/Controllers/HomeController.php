@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertise;
+use App\Models\HeadImage;
+use App\Models\Newzpic;
+use App\Models\Seo;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use App\Models\Newzpic;
-use App\Models\HeadImage;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -25,9 +26,13 @@ class HomeController extends Controller
     public function index()
     {
         $currentdate = date("Y-m-d");
-        $data = Newzpic::whereDate('showdate','=', $currentdate)->paginate(10);
+        $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate(15);
+        $seo = Seo::first();
         $headImage = HeadImage::first();
-        return view('layouts.normal.home',compact('data','headImage'));
+        $hbanner = Advertise::where('addtype', 'hbanner')->first();
+        $fbanner = Advertise::where('addtype', 'fbanner')->first();
+        $normaladd = Advertise::where('addtype', 'normal')->get();
+        return view('layouts.normal.home', compact('data', 'headImage', 'seo', 'hbanner', 'fbanner', 'normaladd'));
 
     }
 
@@ -43,17 +48,15 @@ class HomeController extends Controller
 
     public function register(Request $request)
     {
-            $data = $this->regValidate();
-            $data['password'] = Hash::make($request->password);
-            $data['type'] = "normal";
+        $data = $this->regValidate();
+        $data['password'] = Hash::make($request->password);
+        $data['type'] = "normal";
 
-            User::create($data);
-            return back()->with('update', 'Registration Success Full');
+        User::create($data);
+        return back()->with('update', 'Registration Success Full');
     }
 
-
     public function signin(Request $request)
-
     {
         $data = $this->loginValidate();
 
@@ -69,7 +72,6 @@ class HomeController extends Controller
             'mobile' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
-
 
         ]);
 
@@ -88,9 +90,13 @@ class HomeController extends Controller
     {
 
         $currentdate = $search;
-        $data = Newzpic::whereDate('showdate','=', $currentdate)->paginate(10);
-        $headImage = HeadImage::whereDate('showdate','=', $currentdate)->first();
-        return view('layouts.normal.home',compact('data','headImage'));
+        $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate(10);
+        $headImage = HeadImage::whereDate('showdate', '=', $currentdate)->first();
+        $seo = Seo::first();
+        $hbanner = Advertise::where('addtype', 'hbanner')->first();
+        $fbanner = Advertise::where('addtype', 'fbanner')->first();
+        $normaladd = Advertise::where('addtype', 'normal')->get();
+        return view('layouts.normal.home', compact('data', 'headImage', 'seo', 'hbanner', 'fbanner', 'normaladd'));
     }
 
     public function loginValidate()
@@ -101,16 +107,10 @@ class HomeController extends Controller
             'emailormobile' => 'required',
             'password' => 'required|min:8',
 
-
         ]);
 
         return $data;
 
     }
-
-
-
-
-
 
 }

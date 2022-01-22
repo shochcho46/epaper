@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdvertiseController;
 use App\Http\Controllers\HeadImageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainmenuController;
+use App\Http\Controllers\NewzpicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegUserController;
-use App\Http\Controllers\SubmenuController;
-use App\Http\Controllers\NewzpicController;
-use App\Http\Controllers\AdvertiseController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\SubmenuController;
+use App\Http\Controllers\WebsettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -125,7 +126,6 @@ Route::get('/admin/status/headimage/{headimage}/{status}', [HeadImageController:
 
 // Head Image End
 
-
 // Newzpic Start
 
 Route::get('/admin/newzpic/create', [NewzpicController::class, 'create'])->name('newzpic.create');
@@ -140,7 +140,6 @@ Route::get('/admin/status/newzpic/{newzpic}/{status}', [NewzpicController::class
 
 // Newzpic End
 
-
 // Advertisement Start
 
 Route::get('/admin/advertise/create', [AdvertiseController::class, 'create'])->name('advertise.create');
@@ -152,8 +151,6 @@ Route::delete('/admin/advertise/{advertise}', [AdvertiseController::class, 'dest
 
 // Advertisement End
 
-
-
 // Seo Start
 
 Route::get('/admin/seo/create', [SeoController::class, 'create'])->name('seo.create');
@@ -162,5 +159,16 @@ Route::get('/admin/seo/{seo}/edit', [SeoController::class, 'edit'])->name('seo.e
 Route::put('/admin/seo/{seo}', [SeoController::class, 'update'])->name('seo.update');
 Route::post('/admin/seo/store', [SeoController::class, 'store'])->name('seo.store');
 Route::delete('/admin/seo/{seo}', [SeoController::class, 'destroy'])->name('seo.destroy');
+
+// Seo End
+
+// Seo Start
+
+Route::get('/admin/web/create', [WebsettingController::class, 'create'])->name('web.create');
+Route::get('/admin/web/list', [WebsettingController::class, 'index'])->name('web.index');
+Route::get('/admin/web/{web}/edit', [WebsettingController::class, 'edit'])->name('web.edit');
+Route::put('/admin/web/{web}', [WebsettingController::class, 'update'])->name('web.update');
+Route::post('/admin/web/store', [WebsettingController::class, 'store'])->name('web.store');
+Route::delete('/admin/web/{web}', [WebsettingController::class, 'destroy'])->name('web.destroy');
 
 // Seo End
