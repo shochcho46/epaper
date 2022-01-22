@@ -9,18 +9,33 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="text-center">
 
+    <div class="text-center mb-2">
+        @include('layouts.common.advertisement.hbanner')
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+       
         <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" method="POST" id="projectform" action="{{ route('search.home') }}" enctype="multipart/form-data">
             @include('layouts.common.component.search')
         </form>
-        </div>
+    </div>
 
     <div class="row">
 
-        <div class="col-xs-0 col-sm-0 col-md-8 col-lg-8 col-xl-8">
+       
+        <div class="col-xs-0 col-sm-0 col-md-8 col-lg-8 col-xl-8 mt-3">
+            @if(!empty($headImage->pic_location))
+            <a href="{{ url($headImage->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
+            <img class="img-fluid" src="{{ url($headImage->pic_location) }}">
+            </a>
+            @else
+            <p>Sorry No data Found</p>
+            @endif
 
-            <div class=" mt-5 highslide-gallery">
+
+
+            {{--  <div class=" mt-5 highslide-gallery">
                 <div class="grid">
                   <div class="grid-sizer"></div>
 
@@ -32,7 +47,7 @@
                                     <img src="{{ url($headImage->pic_location) }}" alt="Highslide JS"
                                         title="Click to enlarge" />
                             </a>
-                      </div>
+                    </div>
 
                     @else
 
@@ -41,12 +56,8 @@
                     @endif
 
 
-
-
-
-
-                </div>
-                </div>
+                 </div>
+            </div>  --}}
 
             <div class="highslide-gallery">
                 <div class="grid">
@@ -74,7 +85,9 @@
 
         <div class="col-xs-0 col-sm-0 col-md-4 col-lg-4 col-xl-4">
 
-
+            <div class="text-center">
+                @include('layouts.common.advertisement.normaladd')
+            </div>
 
         </div>
 
@@ -86,6 +99,10 @@
             {{ $data->links() }}
         </div>
         <input type="hidden" id="url" value="{{ url('epaper/js/highslide/graphics/') }}">
+
+        <div class="text-center mt-5">
+            @include('layouts.common.advertisement.footer')
+        </div>
 </div>
 
 @endsection

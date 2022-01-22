@@ -4,8 +4,14 @@
 
 
 
-
-    <a class="navbar-brand ml-2 mr-auto text-dark" href="#"><b><i>Logo</i></b></a>
+@if ($websetting->logo_location)
+<a class="navbar-brand ml-2 mr-auto text-dark" href="#"><img class="" src="{{ url($websetting->logo_location) }}" alt="$websetting->logo_text" height="40"></a> 
+@elseif($websetting->logo_text)
+<a class="navbar-brand ml-2 mr-auto text-dark" href="#"><b><i>{{ $websetting->logo_text }}</i></b></a> 
+@else
+<a class="navbar-brand ml-2 mr-auto text-dark" href="#"><b><i>{{ $websetting->logo_text }}</i></b></a> 
+@endif
+    
 
 
 
