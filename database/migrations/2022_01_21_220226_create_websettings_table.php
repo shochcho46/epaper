@@ -20,6 +20,7 @@ class CreateWebsettingsTable extends Migration
             $table->string('fav_name');
             $table->text('logo_location');
             $table->string('logo_name');
+            $table->string('picperpage');
             $table->text('logo_text');
             $table->timestamps();
         });

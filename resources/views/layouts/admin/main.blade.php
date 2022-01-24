@@ -44,7 +44,7 @@
 
 
 
-        {{-- @include('layouts.admin.sidebar') --}}
+        @include('layouts.admin.sidebar')
 
         @include('layouts.admin.header')
 
@@ -61,10 +61,10 @@
     <!-- Main layout -->
 
 
-    {{-- @include('layouts.admin.footermenu') --}}
+    {{--  @include('layouts.admin.footermenu')  --}}
 
 
-    {{-- @include('layouts.admin.footer') --}}
+    {{--  @include('layouts.admin.footer')  --}}
 
 
 

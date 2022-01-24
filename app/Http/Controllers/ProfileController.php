@@ -28,23 +28,15 @@ class ProfileController extends Controller
         //
         $user = Auth::user();
 
-        if(Auth::user()->type == "normal")
-        {
-            return view('layouts.register.profile.show',compact('user'));
+        if (Auth::user()->type == "normal") {
+            return view('layouts.register.profile.show', compact('user'));
         }
 
-
-
-        if (($user->type == "subadmin") || ($user->type == "admin") || ($user->type == "superadmin"))
-        {
-            return view('layouts.admin.profile.show',compact('user'));
-        }
-
-        else
-        {
+        if (($user->type == "subadmin") || ($user->type == "admin") || ($user->type == "superadmin")) {
+            return view('layouts.admin.profile.show', compact('user'));
+        } else {
             return redirect()->route('logout');
         }
-
 
     }
 
@@ -70,11 +62,11 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-        $profile = Profile::where('user_id',$user->id)->get();
+        $profile = Profile::where('user_id', $user->id)->get();
         $data = $this->validatePersonalRequest();
         $data['user_id'] = $user->id;
 
-        if (count($profile)>0) {
+        if (count($profile) > 0) {
 
             $upprofile = Profile::where('user_id', $user->id)->first();
             $upprofile->update($data);
@@ -143,7 +135,6 @@ class ProfileController extends Controller
         //
     }
 
-
     public function profilepic(Request $request, User $user)
     {
         //
@@ -151,15 +142,13 @@ class ProfileController extends Controller
 
         if ($request->hasFile('location')) {
 
-            $baseurl = url('/');
-
             $images = $request->file('location');
 
             $extension = $images->extension();
             $filename = time() . '.' . $extension;
             $path = $images->storeAs('profile', $filename, 'public');
-            $fullpathurl = $baseurl . '/storage/' . $path;
-            $data['location'] =  $fullpathurl;
+            $fullpathurl = 'storage/' . $path;
+            $data['location'] = $fullpathurl;
 
             $user = User::find(Auth::user()->id);
 
@@ -172,7 +161,6 @@ class ProfileController extends Controller
         }
 
     }
-
 
     public function validateRequestPicture()
     {
@@ -187,7 +175,6 @@ class ProfileController extends Controller
         return $data;
 
     }
-
 
     public function password(Request $request, User $user)
     {
@@ -232,7 +219,6 @@ class ProfileController extends Controller
         return $data;
 
     }
-
 
     public function validatePersonalRequest()
     {
