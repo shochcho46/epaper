@@ -74,6 +74,7 @@ class WebsettingController extends Controller
 
         $data['language'] = $request->language;
         $data['logo_text'] = $request->logo_text;
+        $data['picperpage'] = $request->picperpage;
 
         Websetting::create($data);
         return redirect()->route('web.create')->with('success', 'Data Saved');
@@ -144,6 +145,7 @@ class WebsettingController extends Controller
 
         $data['language'] = $request->language;
         $data['logo_text'] = $request->logo_text;
+        $data['picperpage'] = $request->picperpage;
         // dd($data);
 
         $web->update($data);

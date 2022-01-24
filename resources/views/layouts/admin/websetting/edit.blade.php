@@ -79,7 +79,16 @@
                                         <option value="france" selected>France</option>
 
                                         @endif
-                                      </select>
+                                    </select>
+
+
+                                    <div class="md-form">
+                                        <input type="text" id="picperpage" name="picperpage" placeholder="News Per Page" value="{{ old('picperpage') ?? $data->picperpage }}"  class="form-control" required>
+                                        <label for="picperpage">News Per Page</label>
+                                    </div>
+                                    @if($errors->has('picperpage'))
+                                    <div class="error text-danger m-2">{{ $errors->first('picperpage') }}</div>
+                                    @endif
 
 
                                       @if($errors->has('language'))
@@ -134,12 +143,7 @@
 
 
 
-$(document).ready(function() {
-        $('.mdb-select').materialSelect();
 
-       
-
-      });
 
     $(function(){
 

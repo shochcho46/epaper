@@ -7,6 +7,7 @@ use App\Models\HeadImage;
 use App\Models\Newzpic;
 use App\Models\Seo;
 use App\Models\User;
+use App\Models\Websetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,8 +26,24 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $websetting = Websetting::first();
+        if (!empty($websetting)) {
+            $pagination = $websetting->picperpage;
+        } else {
+            $pagination = 20;
+        }
         $currentdate = date("Y-m-d");
-        $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate(15);
+        $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate($pagination);
+
+        if ($data == "") {
+
+            $getnewzpic = Newzpic::first();
+            if (!empty($getnewzpic)) {
+                $getdate = $getnewzpic->showdate;
+                $data = Newzpic::whereDate('showdate', '=', $getdate)->paginate($pagination);
+            }
+
+        }
         $seo = Seo::first();
         $headImage = HeadImage::first();
         $hbanner = Advertise::where('addtype', 'hbanner')->first();
@@ -38,12 +55,14 @@ class HomeController extends Controller
 
     public function signup()
     {
-        return view('layouts.common.auth.signup');
+        $seo = Seo::first();
+        return view('layouts.common.auth.signup', compact('seo'));
     }
 
     public function login()
     {
-        return view('layouts.common.auth.login');
+        $seo = Seo::first();
+        return view('layouts.common.auth.login', compact('seo'));
     }
 
     public function register(Request $request)
@@ -90,7 +109,14 @@ class HomeController extends Controller
     {
 
         $currentdate = $search;
-        $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate(10);
+        $websetting = Websetting::first();
+        if (!empty($websetting)) {
+            $pagination = $websetting->picperpage;
+        } else {
+            $pagination = 20;
+        }
+
+        $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate($pagination);
         $headImage = HeadImage::whereDate('showdate', '=', $currentdate)->first();
         $seo = Seo::first();
         $hbanner = Advertise::where('addtype', 'hbanner')->first();

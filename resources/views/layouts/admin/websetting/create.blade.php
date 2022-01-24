@@ -77,7 +77,13 @@
                                       @endif
 
 
-
+                                    <div class="md-form">
+                                        <input type="text" id="picperpage" name="picperpage" placeholder="News Per Page" value="{{ old('picperpage') }}"  class="form-control" required>
+                                        <label for="picperpage">News Per Page</label>
+                                    </div>
+                                    @if($errors->has('picperpage'))
+                                    <div class="error text-danger m-2">{{ $errors->first('picperpage') }}</div>
+                                    @endif   
                                    
 
 
@@ -117,8 +123,8 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-        $('.mdb-select').materialSelect();
-        });
+       
+});
 
     $(function(){
 

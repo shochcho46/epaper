@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="{{ $seo->description }}">
+        <meta name="description" content="{{ $seo->description ?? env('APP_NAME') }}">  
 
-        <title>{{ $seo->title }}</title>
-        <link rel="icon" type="image/png" href="{{ url($websetting->fav_location) }}"/>
+        <title>{{ $seo->title ?? env('APP_NAME') }}</title>
+        
+        <link rel="icon" type="image/png" href="{{ url($websetting->fav_location) ?? "" }}"/>
         <link rel="canonical"  href="{{ url('/') }}"/>
 
 
@@ -55,7 +56,7 @@
 
 
           <div class="mt-5">
-            {{-- @include('layouts.normal.footer') --}}
+            @include('layouts.normal.footer')
 
           </div>
 

@@ -5,7 +5,7 @@
       <li class="logo-sn waves-effect py-4">
         <div class="text-center">
           <a href="#" class="pl-0">
-              {{-- <img src="{{ asset('images/brainchildbd.png') }}"> --}}
+              <img src="{{url(Auth::user()->location)  }}" class="rounded-circle" height="80px">
             </a>
 
         </div>
@@ -52,9 +52,27 @@
 
             <div class="collapsible-body">
               <ul>
-                <li><a href="{{ route('submenu.create') }}" class="waves-effect">add news image</a>
+                <li><a href="{{ route('newzpic.create') }}" class="waves-effect">add news image</a>
                 </li>
-                <li><a href="{{ route('submenu.index') }}" class="waves-effect">news image list</a>
+                <li><a href="{{ route('newzpic.index') }}" class="waves-effect">news image list</a>
+                </li>
+                
+              </ul>
+            </div>
+
+        </li>
+
+       
+
+          @if((Auth::user()->type == "admin")||(Auth::user()->type == "superadmin")||(Auth::user()->type == "subadmin"))
+
+          <li><a class="collapsible-header waves-effect arrow-r"><i class="mdi mdi-cast-audio mr-1"></i>Advertisement <i class="fas fa-angle-down rotate-icon"></i></a>
+
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="{{ route('advertise.create') }}" class="waves-effect">add advertisement </a>
+                </li>
+                <li><a href="{{ route('advertise.index') }}" class="waves-effect">advertisement list</a>
                 </li>
                 
               </ul>
@@ -62,9 +80,35 @@
 
           </li>
 
-          @if((Auth::user()->type == "admin")||(Auth::user()->type == "superadmin")||(Auth::user()->type == "subadmin"))
 
+          <li><a class="collapsible-header waves-effect arrow-r"><i class="mdi mdi-web mr-1"></i>Seo <i class="fas fa-angle-down rotate-icon"></i></a>
 
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="{{ route('seo.create') }}" class="waves-effect">Seo Setting</a>
+                </li>
+                
+                
+              </ul>
+            </div>
+
+          </li>
+
+          @if((Auth::user()->type == "admin")||(Auth::user()->type == "superadmin"))
+            <li><a class="collapsible-header waves-effect arrow-r"><i class="mdi mdi-cog-outline mr-1"></i>Settings <i class="fas fa-angle-down rotate-icon"></i></a>
+
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="{{ route('web.create') }}" class="waves-effect">Web Setting</a>
+                  </li>
+                  <li><a href="{{ route('footer.create') }}" class="waves-effect">Footer Setting</a>
+                  </li>
+                  
+                </ul>
+              </div>
+
+            </li>
+          @endif
 
         <li><a class="collapsible-header waves-effect arrow-r"><i class="mdi mdi-account-tie mr-1"></i> User<i class="fas fa-angle-down rotate-icon"></i></a>
 
@@ -73,6 +117,8 @@
 
 
                 @if((Auth::user()->type == "admin")||(Auth::user()->type == "superadmin"))
+
+                
 
                 <li>
                     <a href="{{ route('admin.usercreate') }}" class="waves-effect">add user</a>

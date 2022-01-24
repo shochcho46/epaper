@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdvertiseController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeadImageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -172,3 +173,14 @@ Route::post('/admin/web/store', [WebsettingController::class, 'store'])->name('w
 Route::delete('/admin/web/{web}', [WebsettingController::class, 'destroy'])->name('web.destroy');
 
 // Seo End
+
+// Footer Start
+
+Route::get('/admin/footer/create', [FooterController::class, 'create'])->name('footer.create');
+Route::get('/admin/footer/list', [WebsettingController::class, 'index'])->name('footer.index');
+Route::get('/admin/footer/{footer}/edit', [FooterController::class, 'edit'])->name('footer.edit');
+Route::put('/admin/footer/{footer}', [FooterController::class, 'update'])->name('footer.update');
+Route::post('/admin/footer/store', [FooterController::class, 'store'])->name('footer.store');
+Route::delete('/admin/footer/{footer}', [WebsettingController::class, 'destroy'])->name('footer.destroy');
+
+// Footer End
