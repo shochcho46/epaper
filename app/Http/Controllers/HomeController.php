@@ -6,6 +6,7 @@ use App\Models\Advertise;
 use App\Models\HeadImage;
 use App\Models\Newzpic;
 use App\Models\Seo;
+use App\Models\Social;
 use App\Models\User;
 use App\Models\Websetting;
 use Illuminate\Http\Request;
@@ -45,11 +46,12 @@ class HomeController extends Controller
 
         }
         $seo = Seo::first();
+        $social = Social::all()->sortByDesc("id");
         $headImage = HeadImage::first();
         $hbanner = Advertise::where('addtype', 'hbanner')->first();
         $fbanner = Advertise::where('addtype', 'fbanner')->first();
         $normaladd = Advertise::where('addtype', 'normal')->get();
-        return view('layouts.normal.home', compact('data', 'headImage', 'seo', 'hbanner', 'fbanner', 'normaladd'));
+        return view('layouts.normal.home', compact('data', 'headImage', 'seo', 'hbanner', 'fbanner', 'normaladd', 'social'));
 
     }
 

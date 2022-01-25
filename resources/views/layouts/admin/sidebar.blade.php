@@ -81,6 +81,22 @@
           </li>
 
 
+
+          <li><a class="collapsible-header waves-effect arrow-r"><i class="mdi mdi-wan mr-1"></i>Social Network <i class="fas fa-angle-down rotate-icon"></i></a>
+
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="{{ route('social.create') }}" class="waves-effect">add social network </a>
+                </li>
+                <li><a href="{{ route('social.index') }}" class="waves-effect">social network list</a>
+                </li>
+                
+              </ul>
+            </div>
+
+          </li>
+
+
           <li><a class="collapsible-header waves-effect arrow-r"><i class="mdi mdi-web mr-1"></i>Seo <i class="fas fa-angle-down rotate-icon"></i></a>
 
             <div class="collapsible-body">
