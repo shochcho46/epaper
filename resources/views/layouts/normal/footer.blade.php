@@ -111,26 +111,17 @@
           <!-- Social buttons -->
           <div class="text-center text-md-right">
             <ul class="list-unstyled list-inline">
+              @foreach ($social as $svalue )
+
               <li class="list-inline-item">
-                <a class="btn-floating btn-sm rgba-white-slight">
-                  <i class="mdi mdi-facebook mdi-18px"></i>
+                <a class="btn-floating btn-sm rgba-white-slight" href="{{ $svalue->link }}">
+                  <i class="mdi mdi-{{ $svalue->name }} mdi-18px"></i>
                 </a>
               </li>
-              <li class="list-inline-item">
-                <a class="btn-floating btn-sm rgba-white-slight ">
-                  <i class="mdi mdi-twitter mdi-18px"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a class="btn-floating btn-sm rgba-white-slight ">
-                  <i class="mdi mdi-linkedin mdi-18px"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a class="btn-floating btn-sm rgba-white-slight">
-                  <i class="mdi mdi-instagram mdi-18px"></i>
-                </a>
-              </li>
+                
+              @endforeach
+
+
             </ul>
           </div>
 

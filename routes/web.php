@@ -11,6 +11,7 @@ use App\Http\Controllers\NewzpicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegUserController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\WebsettingController;
 use Illuminate\Support\Facades\Route;
@@ -177,10 +178,20 @@ Route::delete('/admin/web/{web}', [WebsettingController::class, 'destroy'])->nam
 // Footer Start
 
 Route::get('/admin/footer/create', [FooterController::class, 'create'])->name('footer.create');
-Route::get('/admin/footer/list', [WebsettingController::class, 'index'])->name('footer.index');
+
 Route::get('/admin/footer/{footer}/edit', [FooterController::class, 'edit'])->name('footer.edit');
 Route::put('/admin/footer/{footer}', [FooterController::class, 'update'])->name('footer.update');
 Route::post('/admin/footer/store', [FooterController::class, 'store'])->name('footer.store');
-Route::delete('/admin/footer/{footer}', [WebsettingController::class, 'destroy'])->name('footer.destroy');
 
 // Footer End
+
+// Social Start
+
+Route::get('/admin/social/create', [SocialController::class, 'create'])->name('social.create');
+Route::get('/admin/social/list', [SocialController::class, 'index'])->name('social.index');
+Route::get('/admin/social/{social}/edit', [SocialController::class, 'edit'])->name('social.edit');
+Route::put('/admin/social/{social}', [SocialController::class, 'update'])->name('social.update');
+Route::post('/admin/social/store', [SocialController::class, 'store'])->name('social.store');
+Route::delete('/admin/social/{social}', [SocialController::class, 'destroy'])->name('social.destroy');
+
+// Social End

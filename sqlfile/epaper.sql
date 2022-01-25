@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2022 at 11:45 PM
+-- Generation Time: Jan 25, 2022 at 10:59 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -144,7 +144,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2022_01_20_122431_create_advertises_table', 2),
 (20, '2022_01_20_182226_create_seos_table', 2),
 (21, '2022_01_21_220226_create_websettings_table', 2),
-(22, '2022_01_25_031332_create_footers_table', 3);
+(22, '2022_01_25_031332_create_footers_table', 3),
+(23, '2022_01_26_011315_create_socials_table', 4);
 
 -- --------------------------------------------------------
 
@@ -213,6 +214,31 @@ CREATE TABLE `seos` (
 
 INSERT INTO `seos` (`id`, `keyword`, `description`, `title`, `created_at`, `updated_at`) VALUES
 (1, 'আমাদের প্রতিদিন', 'Daily Amader Protidin is a bengali daily newspaper in Bangladesh. The newspaper is printed and published by Amader Protidin.', 'আমাদের প্রতিদিন', '2022-01-24 22:35:59', '2022-01-24 22:35:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `socials`
+--
+
+CREATE TABLE `socials` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `socials`
+--
+
+INSERT INTO `socials` (`id`, `name`, `link`, `created_at`, `updated_at`) VALUES
+(2, 'instagram', 'www.text.com', '2022-01-25 20:37:58', '2022-01-25 20:37:58'),
+(3, 'facebook', 'https://www.facebook.com/', '2022-01-25 20:47:35', '2022-01-25 20:47:35'),
+(5, 'twitter', 'https://www.facebook.com/', '2022-01-25 21:06:02', '2022-01-25 21:06:02'),
+(6, 'linkedin', 'https://www.facebook.com/', '2022-01-25 21:06:15', '2022-01-25 21:06:15'),
+(7, 'youtube', 'https://www.facebook.com/dfd', '2022-01-25 21:06:25', '2022-01-25 21:32:09');
 
 -- --------------------------------------------------------
 
@@ -354,6 +380,12 @@ ALTER TABLE `seos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `socials`
+--
+ALTER TABLE `socials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `submenus`
 --
 ALTER TABLE `submenus`
@@ -412,7 +444,7 @@ ALTER TABLE `mainmenus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `newzpics`
@@ -431,6 +463,12 @@ ALTER TABLE `profiles`
 --
 ALTER TABLE `seos`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `socials`
+--
+ALTER TABLE `socials`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `submenus`
