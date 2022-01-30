@@ -34,9 +34,10 @@ class HomeController extends Controller
             $pagination = 20;
         }
         $currentdate = date("Y-m-d");
+
         $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate($pagination);
 
-        if ($data == "") {
+        if (empty($data)) {
 
             $getnewzpic = Newzpic::first();
             if (!empty($getnewzpic)) {
@@ -58,13 +59,15 @@ class HomeController extends Controller
     public function signup()
     {
         $seo = Seo::first();
-        return view('layouts.common.auth.signup', compact('seo'));
+        $social = Social::all()->sortByDesc("id");
+        return view('layouts.common.auth.signup', compact('seo', 'social'));
     }
 
     public function login()
     {
         $seo = Seo::first();
-        return view('layouts.common.auth.login', compact('seo'));
+        $social = Social::all()->sortByDesc("id");
+        return view('layouts.common.auth.login', compact('seo', 'social'));
     }
 
     public function register(Request $request)

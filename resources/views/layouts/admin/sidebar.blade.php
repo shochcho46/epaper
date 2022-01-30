@@ -5,7 +5,12 @@
       <li class="logo-sn waves-effect py-4">
         <div class="text-center">
           <a href="#" class="pl-0">
+            @if (empty(Auth::user()->location))
+              <img src="" class="rounded-circle" height="80px">
+            @else
               <img src="{{url(Auth::user()->location)  }}" class="rounded-circle" height="80px">
+            @endif
+             
             </a>
 
         </div>

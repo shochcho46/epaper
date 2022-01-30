@@ -50,7 +50,7 @@
           </header>
 
 
-            <div class="container-fluid" style="padding-top: 5.5rem">
+            <div class="container-fluid" style="padding-top: 6.5rem">
                 @yield('content')
             </div>
 
