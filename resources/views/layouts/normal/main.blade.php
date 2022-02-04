@@ -6,8 +6,15 @@
         <meta name="description" content="{{ $seo->description ?? env('APP_NAME') }}">  
 
         <title>{{ $seo->title ?? env('APP_NAME') }}</title>
+
+        @if (!empty($websetting->fav_location))
+           <link rel="icon" type="image/png" href="{{ url($websetting->fav_location)  }}"/>
+        @else
+          <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}"/>
+        @endif
         
-        <link rel="icon" type="image/png" href="{{ url($websetting->fav_location) ?? "" }}"/>
+       
+        
         <link rel="canonical"  href="{{ url('/') }}"/>
 
 

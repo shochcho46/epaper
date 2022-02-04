@@ -14,6 +14,7 @@ class Newzpic extends Model
         'pic_location',
         'showdate',
         'status',
+        'colsize',
         'serial',
 
     ];

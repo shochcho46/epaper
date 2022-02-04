@@ -67,7 +67,8 @@ return [
     |
      */
 
-    'timezone' => 'Asia/Dhaka',
+    // 'timezone' => 'Asia/Dhaka',
+    'timezone' => env('TIME_ZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------

@@ -35,20 +35,29 @@ class HomeController extends Controller
         }
         $currentdate = date("Y-m-d");
 
-        $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate($pagination);
+        $data = Newzpic::whereDate('showdate', '=', $currentdate)->where('status', 1)->orderBy('serial', 'asc')->paginate($pagination);
 
         if (empty($data)) {
 
-            $getnewzpic = Newzpic::first();
+            $getnewzpic = Newzpic::orderBy('id', 'DESC')->first();
             if (!empty($getnewzpic)) {
                 $getdate = $getnewzpic->showdate;
-                $data = Newzpic::whereDate('showdate', '=', $getdate)->paginate($pagination);
+                $data = Newzpic::whereDate('showdate', '=', $getdate)->where('status', 1)->orderBy('serial', 'asc')->paginate($pagination);
             }
 
         }
         $seo = Seo::first();
         $social = Social::all()->sortByDesc("id");
-        $headImage = HeadImage::first();
+
+        $currentHeadImage = HeadImage::whereDate('showdate', '=', $currentdate)->first();
+
+        if (!empty($currentHeadImage)) {
+            $headImage = $currentHeadImage;
+        } else {
+            $headImage = HeadImage::orderBy('id', 'DESC')->first();
+
+        }
+
         $hbanner = Advertise::where('addtype', 'hbanner')->first();
         $fbanner = Advertise::where('addtype', 'fbanner')->first();
         $normaladd = Advertise::where('addtype', 'normal')->get();
@@ -121,13 +130,14 @@ class HomeController extends Controller
             $pagination = 20;
         }
 
-        $data = Newzpic::whereDate('showdate', '=', $currentdate)->paginate($pagination);
+        $data = Newzpic::whereDate('showdate', '=', $currentdate)->where('status', 1)->orderBy('serial', 'asc')->paginate($pagination);
         $headImage = HeadImage::whereDate('showdate', '=', $currentdate)->first();
         $seo = Seo::first();
         $hbanner = Advertise::where('addtype', 'hbanner')->first();
         $fbanner = Advertise::where('addtype', 'fbanner')->first();
         $normaladd = Advertise::where('addtype', 'normal')->get();
-        return view('layouts.normal.home', compact('data', 'headImage', 'seo', 'hbanner', 'fbanner', 'normaladd'));
+        $social = Social::all()->sortByDesc("id");
+        return view('layouts.normal.home', compact('data', 'headImage', 'seo', 'hbanner', 'fbanner', 'normaladd', 'social'));
     }
 
     public function loginValidate()

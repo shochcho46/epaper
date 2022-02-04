@@ -125,7 +125,7 @@ class WebsettingController extends Controller
 
         } else {
             $data['logo_name'] = $request->oldlogo_name;
-            $data['logo_location'] = $request->oldlogo_location;
+            $data['logo_location'] = $request->oldlogo_location_save;
         }
 
         if (request()->hasFile('fav_location')) {
@@ -140,7 +140,7 @@ class WebsettingController extends Controller
 
         } else {
             $data['fav_name'] = $request->oldfav_name;
-            $data['fav_location'] = $request->oldfav_location;
+            $data['fav_location'] = $request->oldfav_location_save;
         }
 
         $data['language'] = $request->language;

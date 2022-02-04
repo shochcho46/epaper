@@ -44,7 +44,7 @@
                                         <option value="hbanner">Head Banner</option>
                                         <option value="normal">Normal Addvertise</option>
                                         <option value="fbanner">Footer Banner</option>
-                                      </select>
+                                    </select>
 
 
                                       @if($errors->has('addtype'))
@@ -91,7 +91,7 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-        $('.mdb-select').materialSelect();
+       // $('.mdb-select').materialSelect();
 
         $('.datepicker').pickadate({
           selectYears:1000,
