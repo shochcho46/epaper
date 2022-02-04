@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2022 at 10:59 PM
+-- Generation Time: Jan 31, 2022 at 06:27 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -99,7 +99,8 @@ CREATE TABLE `head_images` (
 --
 
 INSERT INTO `head_images` (`id`, `user_id`, `pic_name`, `pic_location`, `showdate`, `status`, `created_at`, `updated_at`) VALUES
-(4, 1, '1642882096896.jpg', 'storage/headImage/1642882096896.jpg', '2022-01-23', '1', '2022-01-22 20:04:46', '2022-01-22 20:08:16');
+(4, 1, '1642882096896.jpg', 'storage/headImage/1642882096896.jpg', '2022-01-27', '1', '2022-01-22 20:04:46', '2022-01-26 20:17:16'),
+(5, 2, '1643575911175.jpg', 'storage/headImage/1643575911175.jpg', '2022-01-31', '1', '2022-01-30 20:51:51', '2022-01-30 20:51:51');
 
 -- --------------------------------------------------------
 
@@ -164,6 +165,25 @@ CREATE TABLE `newzpics` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `newzpics`
+--
+
+INSERT INTO `newzpics` (`id`, `user_id`, `pic_name`, `pic_location`, `showdate`, `serial`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '1643228266300.jpg', 'storage/newzpic/1643228266300.jpg', '2022-01-27', '1', '1', '2022-01-26 20:17:46', '2022-01-26 20:17:46'),
+(2, 1, '1643228282583.jpg', 'storage/newzpic/1643228282583.jpg', '2022-01-27', '2', '1', '2022-01-26 20:18:02', '2022-01-26 20:18:02'),
+(3, 1, '1643228298515.jpg', 'storage/newzpic/1643228298515.jpg', '2022-01-27', '3', '1', '2022-01-26 20:18:18', '2022-01-26 20:18:18'),
+(4, 1, '1643228319878.jpg', 'storage/newzpic/1643228319878.jpg', '2022-01-27', '4', '1', '2022-01-26 20:18:39', '2022-01-26 20:18:39'),
+(5, 1, '1643228335605.jpg', 'storage/newzpic/1643228335605.jpg', '2022-01-27', '5', '1', '2022-01-26 20:18:55', '2022-01-26 20:18:55'),
+(6, 1, '1643228411829.jpg', 'storage/newzpic/1643228411829.jpg', '2022-02-01', '1', '1', '2022-01-26 20:20:11', '2022-01-26 20:20:11'),
+(7, 1, '1643228594326.jpg', 'storage/newzpic/1643228594326.jpg', '2021-01-09', '1', '1', '2022-01-26 20:23:14', '2022-01-26 20:23:14'),
+(8, 2, '1643575930267.jpg', 'storage/newzpic/1643575930267.jpg', '2022-01-31', '1', '1', '2022-01-30 20:52:10', '2022-01-30 20:52:10'),
+(9, 2, '1643575951585.jpg', 'storage/newzpic/1643575951585.jpg', '2022-01-31', '2', '1', '2022-01-30 20:52:31', '2022-01-30 20:52:31'),
+(10, 2, '1643575963891.jpg', 'storage/newzpic/1643575963891.jpg', '2022-01-31', '3', '1', '2022-01-30 20:52:43', '2022-01-30 20:52:43'),
+(11, 3, '1643576037616.jpg', 'storage/newzpic/1643576037616.jpg', '2022-01-31', '4', '1', '2022-01-30 20:53:57', '2022-01-30 20:53:57'),
+(12, 3, '1643576051393.jpg', 'storage/newzpic/1643576051393.jpg', '2022-01-31', '5', '1', '2022-01-30 20:54:11', '2022-01-30 20:54:11'),
+(13, 3, '1643576065575.jpg', 'storage/newzpic/1643576065575.jpg', '2022-01-31', '6', '1', '2022-01-30 20:54:25', '2022-01-30 20:54:25');
 
 -- --------------------------------------------------------
 
@@ -283,7 +303,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `mobile`, `password`, `location`, `resetcode`, `type`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Joker', 'shakib46@gmail.com', NULL, '01740303508', '$2y$10$nOzfynSuFEc9m/upLsefTe0AasPpHWAVNDJl2GAcZ/CLqu91ImFG2', 'storage/profile/1643054599.jpg', NULL, 'superadmin', 'active', NULL, '2022-01-19 05:26:21', '2022-01-24 20:03:19');
+(1, 'Joker', 'shakib46@gmail.com', NULL, '01740303508', '$2y$10$nOzfynSuFEc9m/upLsefTe0AasPpHWAVNDJl2GAcZ/CLqu91ImFG2', 'storage/profile/1643054599.jpg', NULL, 'superadmin', 'active', NULL, '2022-01-19 05:26:21', '2022-01-24 20:03:19'),
+(2, 'Test Admin', 'a@a.com', NULL, '11111111111', '$2y$10$2Ke1iprFVdy8h2cuxrlus.Zdco9z6p.a5VuuyXH7c4xo5chAuNGza', NULL, NULL, 'admin', 'active', NULL, '2022-01-30 20:38:00', '2022-01-30 20:38:00'),
+(3, 'sub admin', 's@s.com', NULL, '22222222', '$2y$10$of45cRboTL/rVQFggrstFOZPlWMZ4MIvUBwC6v4QLoYv4gsGtOUeq', NULL, NULL, 'subadmin', 'active', NULL, '2022-01-30 20:38:34', '2022-01-30 20:38:34');
 
 -- --------------------------------------------------------
 
@@ -432,7 +454,7 @@ ALTER TABLE `footers`
 -- AUTO_INCREMENT for table `head_images`
 --
 ALTER TABLE `head_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `mainmenus`
@@ -450,7 +472,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `newzpics`
 --
 ALTER TABLE `newzpics`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -480,7 +502,7 @@ ALTER TABLE `submenus`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `websettings`

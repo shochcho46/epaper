@@ -133,6 +133,7 @@ $(document).ready(function() {
             maxCount:         1,
             rowHeight:        '150px',
             groupClassName:   'col-md-12 col-sm-12 col-xs-12',
+            allowedExt:       'png|jpg|ico|jpeg|web',
             maxFileSize:      '6000000',
 
             dropFileLabel : "Drop Here",

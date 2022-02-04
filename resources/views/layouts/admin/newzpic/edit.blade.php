@@ -45,6 +45,25 @@
                                     <div class="error text-danger m-2">{{ $errors->first('showdate') }}</div>
                                     @endif
 
+
+                                    <select class="mdb-select md-form" name="colsize" required>
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="width1" @if($data->colsize == "width1") selected @endif >Column 1</option>
+                                        <option value="width2" @if($data->colsize == "width2") selected @endif>Column 2</option>
+                                        <option value="width3"  @if($data->colsize == "width3") selected @endif>Column 3</option>
+                                        <option value="width4"  @if($data->colsize == "width4") selected @endif>Column 4</option>
+                                        <option value="width5"  @if($data->colsize == "width5") selected @endif>Column 5</option>
+                                        <option value="width6"  @if($data->colsize == "width6") selected @endif>Column 6</option>
+                                        <option value="width7"  @if($data->colsize == "width7") selected @endif>Column 7</option>
+                                        <option value="width8"  @if($data->colsize == "width8") selected @endif>Column 8</option>
+                                       
+                                    </select>
+
+
+                                      @if($errors->has('colsize'))
+                                      <div class="error text-danger m-2">{{ $errors->first('colsize') }}</div>
+                                      @endif
+
                                     <div class="md-form">
                                         <input type="number" id="serial" name="serial" placeholder="Serial" value="{{ old('serial') ?? $data->serial}}" required min="1" class="form-control">
                                         <label for="serial">Serial</label>
@@ -61,6 +80,7 @@
                                     <input type="hidden"  name="pic_name" id="pic_name"  value="{{ $data->pic_name }}">
                                     <input type="hidden"  name="newzpic" id="newzpic"  value="{{ $data->pic_location }}">
                                     <input type="hidden"  name="oldimgpath" id="oldimgpath"  value="{{ url($data->pic_location) }}">
+                                   
 
 
                                     <button class="btn btn-outline-primary btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">UPDATE</button>
@@ -94,7 +114,7 @@
 
 @section('subscript')
 
-<script src="{{ asset('js/bootstrap.js') }}"></script>
+{{--  <script src="{{ asset('js/bootstrap.js') }}"></script>  --}}
 
 <script type="text/javascript">
 
@@ -103,7 +123,7 @@
 
 
 $(document).ready(function() {
-        $('.mdb-select').materialSelect();
+      //  $('.mdb-select').materialSelect();
 
         $('.datepicker').pickadate({
           selectYears:1000,

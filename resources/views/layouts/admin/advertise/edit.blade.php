@@ -105,7 +105,7 @@
 
 
 $(document).ready(function() {
-        $('.mdb-select').materialSelect();
+        //$('.mdb-select').materialSelect();
 
         $('.datepicker').pickadate({
           selectYears:1000,

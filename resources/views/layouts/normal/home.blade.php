@@ -8,6 +8,13 @@
 @endsection
 
 @section('content')
+
+            
+<p class="text-center p-1">
+    <i class="fas fa-calendar-alt"></i> &nbsp; {{ $bedate }}, &nbsp;{{ $bdate['0'] }} {{ $bdate['1'] }}
+    {{ $bdate['2'] }}, &nbsp;{{ $edate }}
+
+</p>
 <div class="container-fluid">
 
     <div class="text-center mb-2">
@@ -35,39 +42,29 @@
 
 
 
-            {{--  <div class=" mt-5 highslide-gallery">
-                <div class="grid">
-                  <div class="grid-sizer"></div>
-
-                    @if ($headImage)
-
-                    <div class="grid-item">
-
-                        <a href="{{ url($headImage->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
-                                    <img src="{{ url($headImage->pic_location) }}" alt="Highslide JS"
-                                        title="Click to enlarge" />
-                            </a>
-                    </div>
-
-                    @else
-
-                    <p class="text-center">No data Found For this date</p>
-
-                    @endif
-
-
-                 </div>
-            </div>  --}}
-
             <div class="highslide-gallery">
                 <div class="grid">
                   <div class="grid-sizer"></div>
 
+                  <div class="grid-item"></div>
 
-
-                  @foreach ($data as $picture)
+                  {{--  @foreach ($data as $picture)
 
                   <div class="grid-item">
+
+                    <a href="{{ url($picture->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
+                                <img src="{{ url($picture->pic_location) }}" alt="Highslide JS"
+                                    title="Click to enlarge" />
+                        </a>
+                  </div>
+
+                  @endforeach  --}}
+                 
+                 
+                  @foreach ($data as $picture)
+
+                  <div class="grid-item grid-item--{{ $picture->colsize }}">
+                  {{--  <div class="grid-item grid-item">  --}}
 
                     <a href="{{ url($picture->pic_location) }}" class="highslide" onclick="return hs.expand(this)">
                                 <img src="{{ url($picture->pic_location) }}" alt="Highslide JS"
@@ -80,6 +77,12 @@
 
                 </div>
                 </div>
+
+            
+
+
+
+                
 
         </div>
 
@@ -162,10 +165,14 @@ $(document).ready(function() {
 
 // init Masonry
 var $grid = $('.grid').masonry({
-itemSelector: '.grid-item',
-percentPosition: true,
-columnWidth: '.grid-sizer'
+    itemSelector: '.grid-item',
+    percentPosition: true,
+    columnWidth: '.grid-sizer',
+   // columnWidth: 200
+    // horizontalOrder: true
 });
+
+
 // layout Masonry after each image loads
 $grid.imagesLoaded().progress( function() {
 $grid.masonry();

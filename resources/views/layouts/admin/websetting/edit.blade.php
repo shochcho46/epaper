@@ -99,8 +99,10 @@
 
                                     <input type="hidden"  name="oldlogo_name" id="oldlogo_name"  value="{{ $data->logo_name }}">
                                     <input type="hidden"  name="oldlogo_location" id="oldlogo_location"  value="{{ url($data->logo_location) }}">
-                                    <input type="hidden"  name="oldfav_name" id="oldfav_name"  value="{{ url($data->fav_name) }}">
+                                    <input type="hidden"  name="oldlogo_location_save" id="oldlogo_location_save"  value="{{ $data->logo_location }}">
+                                    <input type="hidden"  name="oldfav_name" id="oldfav_name"  value="{{ $data->fav_name }}">
                                     <input type="hidden"  name="oldfav_location" id="oldfav_location"  value="{{ url($data->fav_location) }}">
+                                    <input type="hidden"  name="oldfav_location_save" id="oldfav_location_save"  value="{{ $data->fav_location}}">
 
 
                                     <button class="btn btn-outline-primary btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">UPDATE</button>

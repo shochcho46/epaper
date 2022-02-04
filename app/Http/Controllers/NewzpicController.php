@@ -22,7 +22,7 @@ class NewzpicController extends Controller
     {
         $data = Newzpic::orderBy('id', 'desc')->paginate(10);
 
-        return view('layouts.admin.newzpic.list',compact('data'));
+        return view('layouts.admin.newzpic.list', compact('data'));
     }
 
     /**
@@ -100,11 +100,7 @@ class NewzpicController extends Controller
             $data['pic_name'] = $filename;
             $data['pic_location'] = $fullpathurl;
 
-
-        }
-
-        else
-        {
+        } else {
             $data['pic_name'] = $request->pic_name;
             $data['pic_location'] = $request->newzpic;
 
@@ -126,17 +122,17 @@ class NewzpicController extends Controller
         //
 
         unlink('storage/newzpic/' . $newzpic->pic_name . '');
-         $newzpic->delete();
+        $newzpic->delete();
         return back()->with('fail', 'Data delete success full');
     }
 
-    public function status(Newzpic $newzpic ,$status)
+    public function status(Newzpic $newzpic, $status)
     {
         $data = [
-                'status' => $status,
-          ];
-          $newzpic->update($data);
-          return back()->with('success', 'Data Update');
+            'status' => $status,
+        ];
+        $newzpic->update($data);
+        return back()->with('success', 'Data Update');
     }
 
     public function validateRequest()
@@ -145,10 +141,11 @@ class NewzpicController extends Controller
         if (request()->hasFile('pic_location')) {
 
             $data = request()->validate([
-                'pic_location' => 'max:60000|dimensions:max_width=1920,max_height=1080',
+                'pic_location' => 'max:60000|dimensions:max_width=4920,max_height=3080',
                 'user_id' => 'required',
                 'showdate' => 'required',
                 'serial' => 'required',
+                'colsize' => 'required',
             ]);
         } else {
             $data = request()->validate([
@@ -156,6 +153,7 @@ class NewzpicController extends Controller
                 'user_id' => 'required',
                 'showdate' => 'required',
                 'serial' => 'required',
+                'colsize' => 'required',
             ]);
         }
 

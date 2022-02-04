@@ -45,6 +45,27 @@
                                     <div class="error text-danger m-2">{{ $errors->first('showdate') }}</div>
                                     @endif
 
+
+                                    <select class="mdb-select md-form" name="colsize" required>
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="width1">Column 1</option>
+                                        <option value="width2">Column 2</option>
+                                        <option value="width3">Column 3</option>
+                                        <option value="width4">Column 4</option>
+                                        <option value="width5">Column 5</option>
+                                        <option value="width6">Column 6</option>
+                                        <option value="width7">Column 7</option>
+                                        <option value="width8">Column 8</option>
+                                       
+                                    </select>
+
+
+                                      @if($errors->has('colsize'))
+                                      <div class="error text-danger m-2">{{ $errors->first('colsize') }}</div>
+                                      @endif
+
+
+
                                     <div class="md-form">
                                         <input type="number" id="serial" name="serial" placeholder="Serial" value="{{ old('serial') }}" required min="1" class="form-control">
                                         <label for="serial">Serial</label>
@@ -89,12 +110,12 @@
 
 @section('subscript')
 
-<script src="{{ asset('js/bootstrap.js') }}"></script>
+{{--  <script src="{{ asset('js/bootstrap.js') }}"></script>  --}}
 
 <script type="text/javascript">
 
 $(document).ready(function() {
-        $('.mdb-select').materialSelect();
+        //$('.mdb-select').materialSelect();
 
         $('.datepicker').pickadate({
           selectYears:1000,

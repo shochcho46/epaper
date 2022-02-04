@@ -19,7 +19,8 @@ class CreateNewzpicsTable extends Migration
             $table->string('pic_name');
             $table->text('pic_location');
             $table->string('showdate');
-            $table->string('serial');
+            $table->integer('serial');
+            $table->string('colsize');
             $table->string('status')->default('1');
             $table->timestamps();
         });
