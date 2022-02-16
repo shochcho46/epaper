@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 06:27 PM
+-- Generation Time: Feb 16, 2022 at 10:45 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -35,6 +35,16 @@ CREATE TABLE `advertises` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `advertises`
+--
+
+INSERT INTO `advertises` (`id`, `pic_name`, `pic_location`, `addtype`, `created_at`, `updated_at`) VALUES
+(1, '1643994028671.png', 'storage/advertise/1643994028671.png', 'hbanner', '2022-02-04 17:00:28', '2022-02-04 17:00:28'),
+(2, '1643994057381.jpg', 'storage/advertise/1643994057381.jpg', 'fbanner', '2022-02-04 17:00:57', '2022-02-04 17:00:57'),
+(3, '1643994084472.jpg', 'storage/advertise/1643994084472.jpg', 'normal', '2022-02-04 17:01:24', '2022-02-04 17:01:24'),
+(4, '1643994103190.png', 'storage/advertise/1643994103190.png', 'normal', '2022-02-04 17:01:43', '2022-02-04 17:01:43');
 
 -- --------------------------------------------------------
 
@@ -70,13 +80,6 @@ CREATE TABLE `footers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `footers`
---
-
-INSERT INTO `footers` (`id`, `address`, `mobile`, `email`, `other`, `owner`, `contact`, `created_at`, `updated_at`) VALUES
-(1, 'মোতাহার কমার্শিয়াল কমপ্লেক্স ; ৬ষ্ঠ তলা, জি.এল.রায় রোড ; রংপুর , বাংলাদেশ', '01712183915', 'amaderprotidin.rang@gmail.com', 'তিস্তা প্রিন্টার্স, গ্র্যান্ড হোটেল মোড়, স্টেশন রোড, রংপুর থেকে মুদ্রিত', 'মাহবুব রহমান', 'mahabubt2003@yahoo.com', '2022-01-24 22:01:46', '2022-01-24 22:01:46');
-
 -- --------------------------------------------------------
 
 --
@@ -100,7 +103,9 @@ CREATE TABLE `head_images` (
 
 INSERT INTO `head_images` (`id`, `user_id`, `pic_name`, `pic_location`, `showdate`, `status`, `created_at`, `updated_at`) VALUES
 (4, 1, '1642882096896.jpg', 'storage/headImage/1642882096896.jpg', '2022-01-27', '1', '2022-01-22 20:04:46', '2022-01-26 20:17:16'),
-(5, 2, '1643575911175.jpg', 'storage/headImage/1643575911175.jpg', '2022-01-31', '1', '2022-01-30 20:51:51', '2022-01-30 20:51:51');
+(5, 1, '1643575911175.jpg', 'storage/headImage/1643575911175.jpg', '2022-02-01', '1', '2022-01-30 20:51:51', '2022-02-01 20:36:56'),
+(6, 1, '1643747417302.jpg', 'storage/headImage/1643747417302.jpg', '2022-02-01', '1', '2022-02-01 20:30:17', '2022-02-01 20:30:17'),
+(7, 1, '1643979386572.jpg', 'storage/headImage/1643979386572.jpg', '2022-02-04', '1', '2022-02-04 12:56:26', '2022-02-04 12:56:26');
 
 -- --------------------------------------------------------
 
@@ -141,12 +146,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2021_06_06_024051_create_mainmenus_table', 1),
 (6, '2021_06_06_024415_create_submenus_table', 1),
 (7, '2022_01_18_021931_create_head_images_table', 1),
-(18, '2022_01_19_165231_create_newzpics_table', 2),
-(19, '2022_01_20_122431_create_advertises_table', 2),
-(20, '2022_01_20_182226_create_seos_table', 2),
-(21, '2022_01_21_220226_create_websettings_table', 2),
-(22, '2022_01_25_031332_create_footers_table', 3),
-(23, '2022_01_26_011315_create_socials_table', 4);
+(24, '2022_01_19_165231_create_newzpics_table', 2),
+(25, '2022_01_20_122431_create_advertises_table', 2),
+(26, '2022_01_20_182226_create_seos_table', 2),
+(27, '2022_01_21_220226_create_websettings_table', 2),
+(28, '2022_01_25_031332_create_footers_table', 2),
+(29, '2022_01_26_011315_create_socials_table', 2);
 
 -- --------------------------------------------------------
 
@@ -160,7 +165,8 @@ CREATE TABLE `newzpics` (
   `pic_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pic_location` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `showdate` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `serial` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `serial` int(191) NOT NULL,
+  `colsize` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -170,20 +176,29 @@ CREATE TABLE `newzpics` (
 -- Dumping data for table `newzpics`
 --
 
-INSERT INTO `newzpics` (`id`, `user_id`, `pic_name`, `pic_location`, `showdate`, `serial`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '1643228266300.jpg', 'storage/newzpic/1643228266300.jpg', '2022-01-27', '1', '1', '2022-01-26 20:17:46', '2022-01-26 20:17:46'),
-(2, 1, '1643228282583.jpg', 'storage/newzpic/1643228282583.jpg', '2022-01-27', '2', '1', '2022-01-26 20:18:02', '2022-01-26 20:18:02'),
-(3, 1, '1643228298515.jpg', 'storage/newzpic/1643228298515.jpg', '2022-01-27', '3', '1', '2022-01-26 20:18:18', '2022-01-26 20:18:18'),
-(4, 1, '1643228319878.jpg', 'storage/newzpic/1643228319878.jpg', '2022-01-27', '4', '1', '2022-01-26 20:18:39', '2022-01-26 20:18:39'),
-(5, 1, '1643228335605.jpg', 'storage/newzpic/1643228335605.jpg', '2022-01-27', '5', '1', '2022-01-26 20:18:55', '2022-01-26 20:18:55'),
-(6, 1, '1643228411829.jpg', 'storage/newzpic/1643228411829.jpg', '2022-02-01', '1', '1', '2022-01-26 20:20:11', '2022-01-26 20:20:11'),
-(7, 1, '1643228594326.jpg', 'storage/newzpic/1643228594326.jpg', '2021-01-09', '1', '1', '2022-01-26 20:23:14', '2022-01-26 20:23:14'),
-(8, 2, '1643575930267.jpg', 'storage/newzpic/1643575930267.jpg', '2022-01-31', '1', '1', '2022-01-30 20:52:10', '2022-01-30 20:52:10'),
-(9, 2, '1643575951585.jpg', 'storage/newzpic/1643575951585.jpg', '2022-01-31', '2', '1', '2022-01-30 20:52:31', '2022-01-30 20:52:31'),
-(10, 2, '1643575963891.jpg', 'storage/newzpic/1643575963891.jpg', '2022-01-31', '3', '1', '2022-01-30 20:52:43', '2022-01-30 20:52:43'),
-(11, 3, '1643576037616.jpg', 'storage/newzpic/1643576037616.jpg', '2022-01-31', '4', '1', '2022-01-30 20:53:57', '2022-01-30 20:53:57'),
-(12, 3, '1643576051393.jpg', 'storage/newzpic/1643576051393.jpg', '2022-01-31', '5', '1', '2022-01-30 20:54:11', '2022-01-30 20:54:11'),
-(13, 3, '1643576065575.jpg', 'storage/newzpic/1643576065575.jpg', '2022-01-31', '6', '1', '2022-01-30 20:54:25', '2022-01-30 20:54:25');
+INSERT INTO `newzpics` (`id`, `user_id`, `pic_name`, `pic_location`, `showdate`, `serial`, `colsize`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '1643745835923.jpg', 'storage/newzpic/1643745835923.jpg', '2022-02-02', 1, 'width3', '1', '2022-02-01 20:03:55', '2022-02-01 20:03:55'),
+(2, 1, '1643745933657.jpg', 'storage/newzpic/1643745933657.jpg', '2022-02-02', 2, 'width1', '1', '2022-02-01 20:05:33', '2022-02-01 20:05:33'),
+(3, 1, '1643746812443.jpg', 'storage/newzpic/1643746812443.jpg', '2022-02-02', 3, 'width3', '1', '2022-02-01 20:20:13', '2022-02-01 20:20:13'),
+(6, 1, '1643747003449.jpg', 'storage/newzpic/1643747003449.jpg', '2022-02-02', 6, 'width1', '1', '2022-02-01 20:23:23', '2022-02-01 20:23:23'),
+(7, 1, '1643747132583.jpg', 'storage/newzpic/1643747132583.jpg', '2022-02-02', 7, 'width1', '1', '2022-02-01 20:25:32', '2022-02-01 20:25:32'),
+(8, 1, '1643747173988.jpg', 'storage/newzpic/1643747173988.jpg', '2022-02-02', 8, 'width3', '1', '2022-02-01 20:26:13', '2022-02-01 20:26:13'),
+(9, 1, '1643980243322.jpg', 'storage/newzpic/1643980243322.jpg', '2022-02-04', 1, 'width1', '1', '2022-02-04 12:56:51', '2022-02-04 13:10:43'),
+(10, 1, '1643980413744.jpg', 'storage/newzpic/1643980413744.jpg', '2022-02-04', 2, 'width4', '1', '2022-02-04 13:00:47', '2022-02-04 13:13:33'),
+(11, 1, '1643979790505.jpg', 'storage/newzpic/1643979790505.jpg', '2022-02-04', 3, 'width1', '1', '2022-02-04 13:03:10', '2022-02-04 13:03:10'),
+(12, 1, '1643979940797.jpg', 'storage/newzpic/1643979940797.jpg', '2022-02-04', 4, 'width1', '1', '2022-02-04 13:05:41', '2022-02-04 13:05:41'),
+(13, 1, '1643993531392.jpg', 'storage/newzpic/1643993531392.jpg', '2022-02-04', 5, 'width1', '1', '2022-02-04 13:05:59', '2022-02-04 16:52:11'),
+(16, 1, '1643984184472.jpg', 'storage/newzpic/1643984184472.jpg', '2022-02-04', 8, 'width1', '1', '2022-02-04 14:16:24', '2022-02-04 16:21:21'),
+(17, 1, '1643984255793.jpg', 'storage/newzpic/1643984255793.jpg', '2022-02-04', 6, 'width4', '1', '2022-02-04 14:17:35', '2022-02-04 16:16:31'),
+(18, 1, '1643984377969.jpg', 'storage/newzpic/1643984377969.jpg', '2022-02-04', 11, 'width1', '1', '2022-02-04 14:19:37', '2022-02-04 16:35:31'),
+(19, 1, '1643984503311.jpg', 'storage/newzpic/1643984503311.jpg', '2022-02-04', 7, 'width2', '1', '2022-02-04 14:21:43', '2022-02-04 16:16:00'),
+(20, 1, '1643984739476.jpg', 'storage/newzpic/1643984739476.jpg', '2022-02-04', 13, 'width1', '1', '2022-02-04 14:25:39', '2022-02-04 16:39:25'),
+(21, 1, '1643984898802.jpg', 'storage/newzpic/1643984898802.jpg', '2022-02-04', 9, 'width2', '1', '2022-02-04 14:28:18', '2022-02-04 16:26:03'),
+(22, 1, '1643993454371.jpg', 'storage/newzpic/1643993454371.jpg', '2022-02-04', 10, 'width2', '1', '2022-02-04 14:35:01', '2022-02-04 17:02:41'),
+(24, 1, '1643985444367.jpg', 'storage/newzpic/1643985444367.jpg', '2022-02-04', 12, 'width2', '1', '2022-02-04 14:37:24', '2022-02-04 16:38:35'),
+(25, 1, '1643992886584.jpg', 'storage/newzpic/1643992886584.jpg', '2022-02-04', 14, 'width1', '1', '2022-02-04 16:41:26', '2022-02-04 16:41:26'),
+(26, 1, '1643992960469.jpg', 'storage/newzpic/1643992960469.jpg', '2022-02-04', 15, 'width3', '1', '2022-02-04 16:42:40', '2022-02-04 16:56:30'),
+(27, 1, '1643993589450.jpg', 'storage/newzpic/1643993589450.jpg', '2022-02-04', 16, 'width1', '1', '2022-02-04 16:53:09', '2022-02-04 16:53:09');
 
 -- --------------------------------------------------------
 
@@ -233,7 +248,7 @@ CREATE TABLE `seos` (
 --
 
 INSERT INTO `seos` (`id`, `keyword`, `description`, `title`, `created_at`, `updated_at`) VALUES
-(1, 'আমাদের প্রতিদিন', 'Daily Amader Protidin is a bengali daily newspaper in Bangladesh. The newspaper is printed and published by Amader Protidin.', 'আমাদের প্রতিদিন', '2022-01-24 22:35:59', '2022-01-24 22:35:59');
+(1, 'আমাদের প্রতিদিন', 'আমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিনআমাদের প্রতিদিন', 'আমাদের প্রতিদিন', '2022-02-01 19:14:01', '2022-02-01 19:14:01');
 
 -- --------------------------------------------------------
 
@@ -254,11 +269,7 @@ CREATE TABLE `socials` (
 --
 
 INSERT INTO `socials` (`id`, `name`, `link`, `created_at`, `updated_at`) VALUES
-(2, 'instagram', 'www.text.com', '2022-01-25 20:37:58', '2022-01-25 20:37:58'),
-(3, 'facebook', 'https://www.facebook.com/', '2022-01-25 20:47:35', '2022-01-25 20:47:35'),
-(5, 'twitter', 'https://www.facebook.com/', '2022-01-25 21:06:02', '2022-01-25 21:06:02'),
-(6, 'linkedin', 'https://www.facebook.com/', '2022-01-25 21:06:15', '2022-01-25 21:06:15'),
-(7, 'youtube', 'https://www.facebook.com/dfd', '2022-01-25 21:06:25', '2022-01-25 21:32:09');
+(1, 'facebook', 'https://www.facebook.com/', '2022-02-04 17:06:09', '2022-02-04 17:06:09');
 
 -- --------------------------------------------------------
 
@@ -331,7 +342,7 @@ CREATE TABLE `websettings` (
 --
 
 INSERT INTO `websettings` (`id`, `language`, `fav_location`, `fav_name`, `logo_location`, `logo_name`, `picperpage`, `logo_text`, `created_at`, `updated_at`) VALUES
-(1, 'bangla', 'http://127.0.0.1:8000/storage/websetting/1643057647780.png', 'http://127.0.0.1:8000/1643057647780.png', 'storage/websetting/1643058024263.png', '1643058024263.png', '20', 'আমাদের প্রতিদিন', '2022-01-24 20:42:33', '2022-01-24 21:00:24');
+(3, 'bangla', 'storage/websetting/1643744952871.png', '1643744952871.png', 'storage/websetting/1643744952642.png', '1643744952642.png', '20', 'আমাদের প্রতিদিন', '2022-02-01 19:49:12', '2022-02-04 17:04:40');
 
 --
 -- Indexes for dumped tables
@@ -436,7 +447,7 @@ ALTER TABLE `websettings`
 -- AUTO_INCREMENT for table `advertises`
 --
 ALTER TABLE `advertises`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -448,13 +459,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `footers`
 --
 ALTER TABLE `footers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `head_images`
 --
 ALTER TABLE `head_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mainmenus`
@@ -466,13 +477,13 @@ ALTER TABLE `mainmenus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `newzpics`
 --
 ALTER TABLE `newzpics`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `profiles`
@@ -490,7 +501,7 @@ ALTER TABLE `seos`
 -- AUTO_INCREMENT for table `socials`
 --
 ALTER TABLE `socials`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `submenus`
@@ -508,7 +519,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `websettings`
 --
 ALTER TABLE `websettings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
